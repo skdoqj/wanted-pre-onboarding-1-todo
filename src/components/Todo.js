@@ -27,12 +27,13 @@ function Todo() {
     setTodoList(todoList.filter((item) => item.id !== id));
   };
 
-  const [modify, setModify] = useState(false);
+
   // 투두 수정
-  const modifyTodo = () => {
-    console.log("수정클릭");
-    setModify(!modify);
-  };
+  const updateTodo = (id, updateText) => {
+    console.log(updateText)
+    setTodoList(todoList.map((item)=> item.id == id ? {...item, valueText : updateText} :item))
+
+  }
 
   return (
     <>
@@ -48,28 +49,39 @@ function Todo() {
 
       <ul>
         {todoList.map((item, index) => (
-          <li key={index}>
-            <label>
-              <input type="checkbox" />
-              {modify ? (
-                <input></input>
-              ) : (
-                <span className={`${item.checked ? "checked" : ""}`}>
-                  {item.valueText}
-                </span>
-              )}
+          <List
+          key={item.id}
+          id={item.id}
+          text={item.valueText}
+          checked={item.checked}
+          deleteTodo={deleteTodo}
+          updateTodo={updateTodo}
+          
 
-              <button onClick={() => modifyTodo()} data-testid="modify-button">
-                수정
-              </button>
-              <button
-                onClick={() => deleteTodo(item.id)}
-                data-testid="delete-button"
-              >
-                삭제
-              </button>
-            </label>
-          </li>
+          />
+
+          // <li key={index}>
+          //   <label>
+          //     <input type="checkbox" />
+          //     {modify ? (
+          //       <input></input>
+          //     ) : (
+          //       <span className={`${item.checked ? "checked" : ""}`}>
+          //         {item.valueText}
+          //       </span>
+          //     )}
+
+          //     <button onClick={() => modifyTodo()} data-testid="modify-button">
+          //       수정
+          //     </button>
+          //     <button
+          //       onClick={() => deleteTodo(item.id)}
+          //       data-testid="delete-button"
+          //     >
+          //       삭제
+          //     </button>
+          //   </label>
+          // </li>
         ))}
       </ul>
     </>
