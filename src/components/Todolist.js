@@ -7,13 +7,12 @@ function List({ id, text, deleteTodo, updateTodo }) {
   const [checked, setCheked] = useState(false);
 
   const onChangeCheck = (event) => {
-    if(event.target.checked){
+    if (event.target.checked) {
       setCheked(true);
-    }else{
+    } else {
       setCheked(false);
-    };
-
-  }
+    }
+  };
 
   const [modify, setModify] = useState(false);
   // 투두 수정
@@ -21,47 +20,50 @@ function List({ id, text, deleteTodo, updateTodo }) {
     console.log("수정클릭");
     setModify(!modify);
   };
-  console.log(modify)
+  console.log(modify);
 
-  const[updateText, setUpdateText] = useState();
+  const [updateText, setUpdateText] = useState();
   const changeText = (e) => {
-    const text = (e.target.value)
-    setUpdateText(text)
-  }
-
+    const text = e.target.value;
+    setUpdateText(text);
+  };
 
   return (
-  
-        <li>
-          <label>
-            <input type="checkbox" onChange={onChangeCheck}/>
-            {modify?
-            <input onChange={changeText}
-            data-testid="modify-input"></input> 
-            :
-            <span className={`${checked ? "checked" : ""}`}>
-              {text}
-            </span>}
-            {modify?
-            (<>
-            <button onClick={() => {updateTodo(id, updateText)
-              modifyTodo()}} data-testid="submit-button">
-                제출</button>
-            <button onClick={modifyTodo}
-            data-testid="cancel-button">취소</button>
-            </>)
-            :
-            (<>
-            <button onClick={modifyTodo}
-            data-testid="modify-button">수정</button>
+    <li>
+      <label>
+        <input type="checkbox" onChange={onChangeCheck} />
+        {modify ? (
+          <input onChange={changeText} data-testid="modify-input"></input>
+        ) : (
+          <span className={`${checked ? "checked" : ""}`}>{text}</span>
+        )}
+        {modify ? (
+          <>
             <button
-              onClick={() => deleteTodo(id)}
-              data-testid="delete-button"
-            >삭제</button> 
-            </>)}
-          </label>
-        </li>
-     
+              onClick={() => {
+                updateTodo(id, updateText);
+                modifyTodo();
+              }}
+              data-testid="submit-button"
+            >
+              제출
+            </button>
+            <button onClick={modifyTodo} data-testid="cancel-button">
+              취소
+            </button>
+          </>
+        ) : (
+          <>
+            <button onClick={modifyTodo} data-testid="modify-button">
+              수정
+            </button>
+            <button onClick={() => deleteTodo(id)} data-testid="delete-button">
+              삭제
+            </button>
+          </>
+        )}
+      </label>
+    </li>
   );
 }
 export default List;
