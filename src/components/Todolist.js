@@ -1,41 +1,49 @@
 import { useEffect, useState } from "react";
 
-function List({ id, text, deleteTodo, updateTodo }) {
+function List({ id, text, onCheck, deleteTodo, updateTodo }) {
   // console.log(text);
 
-  // 체크박스
-  const [checked, setCheked] = useState(false);
+  // 체크박스  
+  const [checkBox, setCheckBox] = useState(false)
+  // console.log(checkBox)
+  
+  //투두 업데이트
+  const onUpdateSubmit = () => {
+    updateTodo(id, updateText, checkBox);
+    modifyTodo();
+  }
 
   const onChangeCheck = (event) => {
-    if (event.target.checked) {
-      setCheked(true);
-    } else {
-      setCheked(false);
-    }
+    const checked = event.target.checked 
+    onCheck(id, checked);
+    
+    setCheckBox(checked);
+    // 투두 업데이트
+    onUpdateSubmit();
   };
+
+    
 
   const [modify, setModify] = useState(false);
   // 투두 수정
   const modifyTodo = () => {
     setModify(!modify);
   };
-  console.log(modify);
 
   const [updateText, setUpdateText] = useState();
   const changeText = (e) => {
     const text = e.target.value;
     setUpdateText(text);
-    
   };
   //엔터로 제출
   const onEnter = (e) => {
     // console.log(e.key)
     if(e.key == 'Enter'){
       console.log('엔터')
-      updateTodo(id, updateText);
-      modifyTodo();
+      onUpdateSubmit();
     }
   }
+
 
   return (
     <li>
@@ -45,15 +53,12 @@ function List({ id, text, deleteTodo, updateTodo }) {
           <input onChange={changeText} onKeyUp={onEnter}
           data-testid="modify-input"></input>
         ) : (
-          <span className={`${checked ? "checked" : ""}`}>{text}</span>
+          <span className={`${setCheckBox ? "checked" : ""}`}>{text}</span>
         )}
         {modify ? (
           <>
             <button
-              onClick={() => {
-                updateTodo(id, updateText);
-                modifyTodo();
-              }}
+              onClick={onUpdateSubmit}
               data-testid="submit-button"
             >
               제출

@@ -35,7 +35,6 @@ function Login() {
     
     signinPost(form.email, form.password)
     .then((res) => {
-      alert("어서오세요");
       const token = res.data.access_token
       console.log(token);
       localStorage.setItem('signin_token',token)

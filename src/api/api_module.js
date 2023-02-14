@@ -17,10 +17,10 @@ export const getTodo = async () => {
   return client.get("/todos");
 };
 
-export const updateTodo = async(id, todo , isCompleted) => {
+export const updateTodoAPI = async(id, todo , isCompleted) => {
   return client.put(`/todos/${id}`, {todo, isCompleted});
 };
 
-export const deleteTodo = async (id) => {
+export const deleteTodoAPI = async (id) => {
   return client.delete(`/todos/${id}`);
 };
