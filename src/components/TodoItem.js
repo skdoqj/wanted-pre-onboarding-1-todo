@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
-function List({ id, text, onCheck, deleteTodo, updateTodo }) {
+function List({ id, text, isCompleted, onChecked, deleteTodo, updateTodo ,}) {
   // console.log(text);
 
   // 체크박스  
-  const [checkBox, setCheckBox] = useState(false)
-  // console.log(checkBox)
+  const [checkBox, setCheckBox] = useState(isCompleted)
+
   
   //투두 업데이트
   const onUpdateSubmit = () => {
@@ -13,16 +13,14 @@ function List({ id, text, onCheck, deleteTodo, updateTodo }) {
     modifyTodo();
   }
 
+  // 체크박스 클릭
   const onChangeCheck = (event) => {
     const checked = event.target.checked 
-    onCheck(id, checked);
-    
+    onChecked(id, checked);    
     setCheckBox(checked);
-    // 투두 업데이트
-    onUpdateSubmit();
+
   };
 
-    
 
   const [modify, setModify] = useState(false);
   // 투두 수정
@@ -48,7 +46,7 @@ function List({ id, text, onCheck, deleteTodo, updateTodo }) {
   return (
     <li>
       <label>
-        <input type="checkbox" onChange={onChangeCheck} />
+        <input type="checkbox" checked={checkBox} onChange={onChangeCheck} />
         {modify ? (
           <input onChange={changeText} onKeyUp={onEnter}
           data-testid="modify-input"></input>

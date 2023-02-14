@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import List from "./Todolist";
+import List from "./TodoItem";
 import { getTodo, createTodo, deleteTodoAPI , updateTodoAPI} from "../api/api_module";
 import { useNavigate } from "react-router-dom";
 
@@ -46,6 +46,8 @@ function Todo() {
       //axios post
       createTodo(todoItem.todo).then((res)=>{
         console.log('todo 추가 완료')
+        // axios get
+        getTodoList()
       }).catch((err) => {console.log(err)})
       event.target[0].value = "";
     }
@@ -62,17 +64,15 @@ function Todo() {
     .catch(err => console.log(err));
   };
 
-  // 체크박스
-  const onCheck = (id, checked) => {
-    console.log(id, checked)
-    
-    // setTodoList(
-    //   todoList.map((item) =>
-    //     item.id == id ? { ...item, isCompleted: checked } : item
-    //   )
-    // );
+  // 체크박스 변경
+  const onChecked = (id, checked) => {
+    const todo = todoList.find(item => item.id == id).todo
+    console.log(id, todo, checked)
+    //체크박스 바뀌면 API 업데이트
+    updateTodoAPI(id, todo, checked).then(console.log('체크 업데이트')).catch(err=> console.log(err))
 
   }
+
 
   // 투두 수정
   const updateTodo = (id, updateText, checkBox) => {
@@ -126,7 +126,7 @@ function Todo() {
             id={item.id}
             text={item.todo}
             isCompleted={item.isCompleted}
-            onCheck={onCheck}
+            onChecked={onChecked}
             deleteTodo={deleteTodo}
             updateTodo={updateTodo}
           />
