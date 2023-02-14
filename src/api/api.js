@@ -1,9 +1,10 @@
 import axios from "axios";
 
-// const API_KEY = client.env.REACT_APP_API_KEY;
+// const API_KEY = process.env.REACT_APP_API_KEY;
+const API_KEY = "https://pre-onboarding-selection-task.shop/"
 
 export const client = axios.create({
-  baseURL: "https://pre-onboarding-selection-task.shop/",
+  baseURL: API_KEY,
   headers: {
     // CORS
     "Access-Control-Allow-Origin": "*",
@@ -12,8 +13,9 @@ export const client = axios.create({
 });
 
 client.interceptors.request.use((config) => {
-  const accessToken = localStorage.getItem("access_token");
-  config.headers.authorization = `${accessToken}`;
+  const accessToken = localStorage.getItem("signin_token");
+  config.headers.authorization = `Bearer ${accessToken}`;
+ 
   // if (accessToken && config.headers) {
   //   config.headers["Authorization"] = `Bearer ${accessToken}`;
   // }

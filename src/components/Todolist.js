@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 function List({ id, text, deleteTodo, updateTodo }) {
-  console.log(text);
+  // console.log(text);
 
   // 체크박스
   const [checked, setCheked] = useState(false);
@@ -17,7 +17,6 @@ function List({ id, text, deleteTodo, updateTodo }) {
   const [modify, setModify] = useState(false);
   // 투두 수정
   const modifyTodo = () => {
-    console.log("수정클릭");
     setModify(!modify);
   };
   console.log(modify);
@@ -26,14 +25,25 @@ function List({ id, text, deleteTodo, updateTodo }) {
   const changeText = (e) => {
     const text = e.target.value;
     setUpdateText(text);
+    
   };
+  //엔터로 제출
+  const onEnter = (e) => {
+    // console.log(e.key)
+    if(e.key == 'Enter'){
+      console.log('엔터')
+      updateTodo(id, updateText);
+      modifyTodo();
+    }
+  }
 
   return (
     <li>
       <label>
         <input type="checkbox" onChange={onChangeCheck} />
         {modify ? (
-          <input onChange={changeText} data-testid="modify-input"></input>
+          <input onChange={changeText} onKeyUp={onEnter}
+          data-testid="modify-input"></input>
         ) : (
           <span className={`${checked ? "checked" : ""}`}>{text}</span>
         )}
