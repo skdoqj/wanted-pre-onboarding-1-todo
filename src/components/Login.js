@@ -23,8 +23,6 @@ function Login() {
     } = Regex();
 
 
-
-//    console.log(form.email, form.password);
     // 로그인
     const onLogin = (e) => {
     e.preventDefault();
@@ -32,11 +30,9 @@ function Login() {
     signinPost(form.email, form.password)
     .then((res) => {
       const token = res.data.access_token
-      console.log(token);
       localStorage.setItem('signin_token',token)
       movePage("/todo");
-      
-      
+
     }).catch((error) => {
       alert('아이디 또는 비밀번호를 확인하세요');
       console.error(error);

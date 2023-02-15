@@ -1,4 +1,4 @@
-'../style/toco.css'
+import '../style/todo.css'
 
 import { useEffect, useState } from "react";
 
@@ -47,13 +47,16 @@ function Item({ id, text, isCompleted, onChecked, deleteTodo, updateTodo ,}) {
   return (
     <li>
       <label>
-        <input type="checkbox" checked={checkBox} onChange={onChangeCheck} />
+      <i className={`${checkBox ?'circle_checked circle':'circle'}`}></i>
+        <input className='checkbox' type="checkbox" checked={checkBox} onChange={onChangeCheck} />
         {modify ? (
-          <input onChange={changeText} onKeyUp={onEnter}
+          <input className="modify-input"
+          onChange={changeText} onKeyUp={onEnter}
           data-testid="modify-input"></input>
         ) : (
-          <span className={`${setCheckBox ? "checked" : ""}`}>{text}</span>
+          <span className={`${checkBox ? "todo_text checked" : "todo_text"}`}>{text}</span>
         )}
+        <div className="btns">
         {modify ? (
           <>
             <button
@@ -62,20 +65,27 @@ function Item({ id, text, isCompleted, onChecked, deleteTodo, updateTodo ,}) {
             >
               제출
             </button>
-            <button onClick={modifyTodo} data-testid="cancel-button">
+            <button 
+              onClick={modifyTodo} 
+              data-testid="cancel-button">
               취소
             </button>
           </>
         ) : (
           <>
-            <button onClick={modifyTodo} data-testid="modify-button">
+            <button 
+            onClick={modifyTodo} 
+            data-testid="modify-button">
               수정
             </button>
-            <button onClick={() => deleteTodo(id)} data-testid="delete-button">
+            <button 
+            onClick={() => deleteTodo(id)} 
+            data-testid="delete-button">
               삭제
             </button>
           </>
         )}
+        </div>
       </label>
     </li>
   );

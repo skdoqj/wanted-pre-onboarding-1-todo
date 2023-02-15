@@ -1,4 +1,4 @@
-'../style/toco.css'
+import '../style/todo.css'
 
 import { useEffect, useState } from "react";
 import Item from "./TodoItem";
@@ -54,7 +54,6 @@ function Todo() {
       event.target[0].value = "";
     }
   };
-  console.log(todoList);
 
   // 투두 삭제
   const deleteTodo = (id) => {
@@ -89,7 +88,6 @@ function Todo() {
 
     //업데이트 axios
     updateTodoAPI(id , todo, isCompleted)
-    .then(console.log('투두업데이트'))
     .catch(err => console.log(err));
   };
 
@@ -110,12 +108,15 @@ function Todo() {
   return (
     <>
       {/* 투두 입력 */}
-      <button
-      onClick={onLogout}>로그아웃</button>
-      <div>TODO LIST</div>
+      <button className='logout_btn'
+      onClick={onLogout}>Logout</button>
+      <div className="todo_page">
+      <h1>TODO LIST</h1>
       <form onSubmit={onSubmit}>
-        <input data-testid="new-todo-input"></input>
-        <button data-testid="new-todo-add-button">ADD</button>
+        <input className='todo_iput'
+        data-testid="new-todo-input"></input>
+        <button className='add_btn'
+        data-testid="new-todo-add-button">ADD</button>
       </form>
 
       {/* 투두 리스트 */}
@@ -134,6 +135,7 @@ function Todo() {
           />
         ))}
       </ul>
+      </div>
     </>
   );
 }

@@ -27,10 +27,9 @@ function Signup() {
   const signUp = () => {
 
     signUpPost(form.email, form.password).then((res) => {
-      alert("success", "회원가입 성공");
+      alert("회원가입 되셨습니다");
       movePage("/signin");
     }).catch((error) => {
-      // console.log(error);
       console.error(error);
     });;
   };
