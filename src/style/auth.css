@@ -1,0 +1,69 @@
+.auth_page {
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 100px;
+    width: 500px;
+    height: 500px;
+
+    border-radius: 20px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+.title {
+    padding-top: 40px;
+}
+.auth_form {
+    margin: 0 auto;
+    display: grid;
+    justify-content: center;
+    /* width: 400px; */
+    margin-top: 25px;
+    /* background-color: yellow; */
+}
+.auth_form > label {
+    color:  rgb(4, 169, 114);
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+.auth_form > input {
+    width: 380px;
+    height: 40px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid rgb(4, 169, 114);
+    outline: none;
+
+    padding-left: 20px;
+    font-size: 0.9rem;
+}
+.submit_btn {
+    width: 400px;
+    height: 40px;
+    margin-top: 30px;
+    background-color: rgb(4, 169, 114);
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+.disabled_submit_btn {
+    width: 400px;
+    height: 40px;
+    margin-top: 30px;
+    background-color: rgb(164, 164, 164);
+    border: none;
+    color: white;
+}
+
+.bottom_text {
+    margin-top: 50px;
+}
+.bottom_text > span {
+    padding-right: 10px;
+}

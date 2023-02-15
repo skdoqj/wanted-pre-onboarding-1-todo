@@ -1,5 +1,7 @@
+import '../style/auth.css'
+
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signUpPost, signinPost } from "../api/api_module";
 import Regex from "./Regex";
 
@@ -9,10 +11,7 @@ function Signup() {
     //로그인 판별
     useEffect (()=>{
         if (localStorage.getItem('signin_token') !== null){
-        console.log('로컬 값 있음')
         movePage("/todo");
-        } else{
-            console.log('로컬값 없음')
         }
     },[])
     
@@ -26,7 +25,7 @@ function Signup() {
 
   // axios 
   const signUp = () => {
-    console.log(form.email, form.password);
+
     signUpPost(form.email, form.password).then((res) => {
       alert("success", "회원가입 성공");
       movePage("/signin");
@@ -39,8 +38,10 @@ function Signup() {
   
 
   return (
-    <>
-      <form>
+    <div className='auth_page'>
+      <h1 className='title'>SIGNUP</h1>
+      <form className='auth_form'>
+
       <label>email</label>
          <input
            type="email"
@@ -48,7 +49,7 @@ function Signup() {
            data-testid="email-input"
            placeholder="@email.com"
          ></input>
-         <span>이메일을 입력하세요</span>
+
          <label>password</label>
          <input
            type="password"
@@ -56,15 +57,19 @@ function Signup() {
            data-testid="password-input"
            placeholder="8자 이상 입력"
         ></input>
-        <button
+
+        <button className={disabled? 'disabled_submit_btn' : 'submit_btn'}
           onClick={signUp}
           disabled={disabled}
           data-testid="signup-button"
         >
-          회원가입
+          Signup
         </button>
+        <div className='bottom_text'>
+        <Link to="/signin">로그인 페이지</Link>
+        </div>
       </form>
-    </>
+    </div>
   );
 }
 

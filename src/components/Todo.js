@@ -1,5 +1,7 @@
+'../style/toco.css'
+
 import { useEffect, useState } from "react";
-import List from "./TodoItem";
+import Item from "./TodoItem";
 import { getTodo, createTodo, deleteTodoAPI , updateTodoAPI} from "../api/api_module";
 import { useNavigate } from "react-router-dom";
 
@@ -68,7 +70,7 @@ function Todo() {
   const onChecked = (id, checked) => {
     const todo = todoList.find(item => item.id == id).todo
     console.log(id, todo, checked)
-    //체크박스 바뀌면 API 업데이트
+    //체크박스 바뀌면 업데이트 axios
     updateTodoAPI(id, todo, checked).then(console.log('체크 업데이트')).catch(err=> console.log(err))
 
   }
@@ -78,17 +80,17 @@ function Todo() {
   const updateTodo = (id, updateText, checkBox) => {
     const todo = updateText
     const isCompleted = checkBox
-    console.log(id, todo, isCompleted);
+
     setTodoList(
       todoList.map((item) =>
         item.id == id ? { ...item, todo: todo, isCompleted: isCompleted} : item
       )
     );
-    console.log(todoList.find(item => item.id == id ? item.isCompleted : null))
-    
-    // updateTodoAPI(id , todo, isCompleted)
-    // .then(console.log('투두업데이트'))
-    // .catch(err => console.log(err));
+
+    //업데이트 axios
+    updateTodoAPI(id , todo, isCompleted)
+    .then(console.log('투두업데이트'))
+    .catch(err => console.log(err));
   };
 
 
@@ -121,7 +123,7 @@ function Todo() {
 
       <ul>
         {todoList.map((item, index) => (
-          <List
+          <Item
             key={item.id}
             id={item.id}
             text={item.todo}

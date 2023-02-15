@@ -1,11 +1,12 @@
+'../style/toco.css'
+
 import { useEffect, useState } from "react";
 
-function List({ id, text, isCompleted, onChecked, deleteTodo, updateTodo ,}) {
+function Item({ id, text, isCompleted, onChecked, deleteTodo, updateTodo ,}) {
   // console.log(text);
 
   // 체크박스  
   const [checkBox, setCheckBox] = useState(isCompleted)
-
   
   //투두 업데이트
   const onUpdateSubmit = () => {
@@ -79,4 +80,4 @@ function List({ id, text, isCompleted, onChecked, deleteTodo, updateTodo ,}) {
     </li>
   );
 }
-export default List;
+export default Item;

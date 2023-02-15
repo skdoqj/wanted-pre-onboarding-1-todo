@@ -29,7 +29,6 @@ function Regex() {
         if (emailRegex.test(emailInput)) {
             setIsEail(true);
         } else {
-            // console.log("이메일 틀림");
             setIsEail(false);
         }
     };
@@ -46,7 +45,7 @@ function Regex() {
         if (passwordRegex.test(passwordInput)) {
           setIsPassword(true);
         } else {
-        //   console.log("비밀번호 틀림");
+
           setIsPassword(false);
         }
       };    
@@ -54,10 +53,10 @@ function Regex() {
       // 유효성 검사에 따른 버튼 활성화
     const regexTest = () => {
         if (isEmail && isPassword) {
-        console.log("둘다 유효성 통과");
+
         setDisabled(false);
         } else {
-        console.log("틀림");
+
         setDisabled(true);
         }
     }

@@ -1,4 +1,3 @@
-import "./App.css";
 import Todo from "./components/Todo.js";
 import Login from "./components/Login.js";
 import Signup from "./components/Signup.js";
