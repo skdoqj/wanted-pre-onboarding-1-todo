@@ -1,16 +1,31 @@
-# Getting Started with Create React App
+# 원티드 프리온보딩 프론트엔드
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+🔗 배포링크
+https://suwan-todo.netlify.app/
 
-## Available Scripts
+**React Project**
 
-In the project directory, you can run:
+* 사용 라이브러리  
+Axios , react-router-dom
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 프로젝트 실행
+
+* 환경변수 파일 생성
+ ```
+.env // 파일 생성
+REACT_APP_API_KEY = "https://pre-onboarding-selection-task.shop/"
+```
+* 패키지 설치
+```
+npm install
+```
+
+* 실행 
+```
+npm start
+```
+
 
