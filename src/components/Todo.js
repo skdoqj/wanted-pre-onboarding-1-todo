@@ -100,8 +100,6 @@ function Todo() {
   localStorage.removeItem('signin_token')
 
   // 모든 것 삭제
-  // localStorage.clear()
-  // window.location.reload();
   movePage("/signin");
   };
 
@@ -119,9 +117,7 @@ function Todo() {
         data-testid="new-todo-add-button">ADD</button>
       </form>
 
-      {/* 투두 리스트 */}
-      {/* <List todo={todoList} /> */}
-
+      
       <ul>
         {todoList.map((item, index) => (
           <Item

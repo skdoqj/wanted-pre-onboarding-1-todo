@@ -3,7 +3,7 @@ import '../style/auth.css'
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signinPost } from "../api/api_module";
-import Regex from "./Regex";
+import Valid from "./Valid";
 
 function Login() {
     const movePage = useNavigate();
@@ -20,7 +20,7 @@ function Login() {
         disabled,
         onChangeEmail,
         onChangePassword
-    } = Regex();
+    } = Valid();
 
 
     // 로그인

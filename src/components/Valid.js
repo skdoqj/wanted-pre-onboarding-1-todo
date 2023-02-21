@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function Regex() {
+function Valid() {
 
     const [form, setForm] = useState([
         {
@@ -75,4 +75,4 @@ return {
     };
 }
 
-export default Regex;
+export default Valid;

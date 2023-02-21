@@ -3,7 +3,7 @@ import '../style/auth.css'
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signUpPost, signinPost } from "../api/api_module";
-import Regex from "./Regex";
+import Valid from "./Valid";
 
 function Signup() {
   const movePage = useNavigate();
@@ -20,7 +20,7 @@ function Signup() {
         disabled,
         onChangeEmail,
         onChangePassword
-    } = Regex();
+    } = Valid();
 
 
   // axios 

@@ -28,9 +28,6 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={isLogin ? <Navigate replace to="/todo" /> : <Navigate replace to="/signin" />} />
-          {/* <Route path="/todo" element={isLogin ? <Todo /> : <Navigate replace to="/signin" />} /> */}
-          {/* <Route path="/signin" element={isLogin ? <Navigate replace to="/todo" /> : <Login />} /> */}
-          {/* <Route path="/signup" element={isLogin ? <Navigate replace to="/todo" /> : <Signup />} /> */}
 
           <Route path="/todo" element={<Todo />} />
           <Route path="/signin" element={ <Login />} />
